@@ -45,13 +45,19 @@ describe Oystercard do
     end
 
     it 'returns true when touch_in' do
+      subject.top_up(1)
       expect(subject.touch_in).to be true
     end
 
     it 'for in_journey? returns true' do
+      subject.top_up(1)
       subject.touch_in
       # expect(subject.in_journey?).to be true
       expect(subject).to be_in_journey # predicate matcher
+    end
+
+    it 'raises an error when the balance is less than £1' do
+      expect{subject.touch_in}.to raise_error 'Insufficient funds'
     end
   end
 

@@ -82,3 +82,18 @@ Card <--touch_in--> Gate
 Card <--touch_out--> Gate
 
 
+# User story 6
+In order to pay for my journey
+As a customer
+I need to have the minimum amount (£1) for a single journey.
+
+# Function representation
+Objects:
+- Card
+- Amount
+
+Verbs:
+- has_min_amount
+
+# Diagram
+Card <--has_min_amount--> £1
