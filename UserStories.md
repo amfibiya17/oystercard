@@ -52,7 +52,7 @@ In order to pay for my journey
 As a customer
 I need my fare deducted from my card
 
-# Function reprentation
+# Function representation
 Objects:
 - Card
 - Money
@@ -62,3 +62,23 @@ Verbs:
 
 # Diagram
 Card <--deduct--> Money
+
+# User story 5
+In order to get through the barriers.
+As a customer
+I need to touch in and out.
+
+# Function representation
+Objects:
+- Card
+- Gate
+
+Verbs:
+- touch_in
+- touch_out
+
+# Diagram
+Card <--touch_in--> Gate
+Card <--touch_out--> Gate
+
+

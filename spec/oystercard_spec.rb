@@ -39,4 +39,42 @@ describe Oystercard do
     
   end
 
+  describe '#touch_in' do
+    it 'responds to touch_in method' do
+      expect(subject).to respond_to(:touch_in)
+    end
+
+    it 'returns true when touch_in' do
+      expect(subject.touch_in).to be true
+    end
+
+    it 'for in_journey? returns true' do
+      subject.touch_in
+      # expect(subject.in_journey?).to be true
+      expect(subject).to be_in_journey # predicate matcher
+    end
+  end
+
+  describe '#touch_out' do
+    it 'responds to touch_out method' do
+      expect(subject).to respond_to(:touch_out)
+    end
+
+    # it 'returns true when touch_out' do
+    #   expect(subject.touch_out).to be true
+    # end
+
+    it 'in_journey? returns false' do
+      subject.touch_out
+      # expect(subject.in_journey?).to be true
+      expect(subject).not_to be_in_journey # predicate matcher
+    end
+  end
+
+  describe '#in_journey?' do
+    it 'responds to in_journey? method' do
+      expect(subject).to respond_to(:in_journey?)
+    end
+  end
+
 end
