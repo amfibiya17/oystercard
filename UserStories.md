@@ -9,6 +9,23 @@ Objects:
 - Card
 
 Verbs:
+- have_money
+
+# Diagram
+Card <--has_money--> Money
+
+
+# User story 2
+In order to keep using public transport
+As a customer
+I want to add money to my card
+
+# Function representation
+Objects:
+- Money
+- Card
+
+Verbs:
 - top_up
 
 # Diagram
