@@ -30,3 +30,19 @@ Verbs:
 
 # Diagram
 Card <--top_up--> Money
+
+# User story 3
+In order to protect my money from theft or loss
+As a customer
+I want a maximum limit (of £90) on my card
+
+# Function representation
+Objects:
+- Card
+- Money
+
+Verbs:
+- has_limit
+
+# Diagram
+Card <--has_limit--> Money
