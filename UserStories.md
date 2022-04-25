@@ -46,3 +46,19 @@ Verbs:
 
 # Diagram
 Card <--has_limit--> Money
+
+# User story 4
+In order to pay for my journey
+As a customer
+I need my fare deducted from my card
+
+# Function reprentation
+Objects:
+- Card
+- Money
+
+Verbs:
+- deduct
+
+# Diagram
+Card <--deduct--> Money
