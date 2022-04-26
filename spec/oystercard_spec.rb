@@ -26,38 +26,46 @@ describe Oystercard do
     end
   end
 
-  describe '#deduct' do
-    it 'responds to deduct' do
-      expect(subject).to respond_to(:deduct).with(1).argument
-    end
+  # describe '#deduct' do
+  #   it 'responds to deduct' do
+  #     expect(subject).to respond_to(:deduct).with(1).argument
+  #   end
 
-    it 'can deduct money from the balance' do
-      subject.top_up(10)
-      # expect(subject.deduct(4)).to eq 6
-      expect{subject.deduct(4)}.to change{ subject.balance }.by -4
-    end
+  #   it 'can deduct money from the balance' do
+  #     subject.top_up(10)
+  #     # expect(subject.deduct(4)).to eq 6
+  #     expect{subject.deduct(4)}.to change{ subject.balance }.by -4
+  #   end
     
-  end
+  # end
 
   describe '#touch_in' do
+    let (:station){ double :station }
+    it 'stores the entry station' do
+      subject.top_up(5)
+      subject.touch_in(station)
+      expect(subject.entry_station).to eq station
+    end
+
     it 'responds to touch_in method' do
-      expect(subject).to respond_to(:touch_in)
+      expect(subject).to respond_to(:touch_in).with(1).argument
     end
 
     it 'returns true when touch_in' do
-      subject.top_up(1)
-      expect(subject.touch_in).to be true
+      subject.top_up(3)
+      subject.touch_in(station)
+      expect(subject.in_journey?).to be true
     end
 
     it 'for in_journey? returns true' do
       subject.top_up(1)
-      subject.touch_in
+      subject.touch_in(station)
       # expect(subject.in_journey?).to be true
       expect(subject).to be_in_journey # predicate matcher
     end
 
     it 'raises an error when the balance is less than £1' do
-      expect{subject.touch_in}.to raise_error 'Insufficient funds'
+      expect{subject.touch_in(station)}.to raise_error 'Insufficient funds'
     end
   end
 
@@ -78,7 +86,8 @@ describe Oystercard do
 
     it 'takes correct amount deducted from the card when the journey is complete' do
       subject.top_up(10)
-      subject.touch_in
+      station = "Peterborough"
+      subject.touch_in(station)
       subject.touch_out
       expect{subject.touch_out}.to change{subject.balance}.by(-Oystercard::JOURNEY_COST)
     end
