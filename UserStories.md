@@ -97,3 +97,23 @@ Verbs:
 
 # Diagram
 Card <--has_min_amount--> £1
+
+# User story 7
+In order to pay for my journey
+As a customer
+When my journey is complete, I need the correct amount deducted from my card
+
+# Function representation
+Objects:
+- Card
+- Amount
+- Money
+
+Verbs:
+- touch_out
+- deduct
+
+# Diagram
+Card <--touch_out--> money
+Card <--deduct--> money
+

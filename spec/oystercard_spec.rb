@@ -75,6 +75,13 @@ describe Oystercard do
       # expect(subject.in_journey?).to be true
       expect(subject).not_to be_in_journey # predicate matcher
     end
+
+    it 'takes correct amount deducted from the card when the journey is complete' do
+      subject.top_up(10)
+      subject.touch_in
+      subject.touch_out
+      expect{subject.touch_out}.to change{subject.balance}.by(-Oystercard::JOURNEY_COST)
+    end
   end
 
   describe '#in_journey?' do
