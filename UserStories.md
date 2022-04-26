@@ -117,3 +117,32 @@ Verbs:
 Card <--touch_out--> money
 Card <--deduct--> money
 
+# User story 8
+In order to know where I have been
+As a customer
+I want to see all my previous trips
+
+# Function representation
+Objects:
+- previous_journey
+
+Verbs:
+- ???
+
+# Diagram
+Previous_journeys << journey
+
+# User story 9
+In order to know how far I have travelled
+As a customer
+I want to know what zone a station is in
+
+# Function representation
+Objects:
+- Station
+
+Verbs:
+- ???
+
+# Diagram
+station <--> card
