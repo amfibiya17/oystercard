@@ -1,7 +1,7 @@
 require 'oystercard'
 
 describe Oystercard do
-  
+
   describe '#balance' do
     it 'initializes a balance' do
       expect(subject.balance).to eql(0)
@@ -9,12 +9,12 @@ describe Oystercard do
   end
 
   describe '#top_up' do
+
     it 'responds to top_up' do
       expect(subject).to respond_to(:top_up).with(1).argument
     end
 
     it 'can add money to the balance' do
-      # expect(subject.top_up(4)).to eq 4 
       expect{subject.top_up(4)}.to change{ subject.balance }.by 4
 
     end
@@ -60,7 +60,6 @@ describe Oystercard do
     it 'for in_journey? returns true' do
       subject.top_up(1)
       subject.touch_in(station)
-      # expect(subject.in_journey?).to be true
       expect(subject).to be_in_journey # predicate matcher
     end
 
@@ -91,17 +90,12 @@ describe Oystercard do
       expect(subject.journeys).to include journey
     end
 
-    # it 'returns true when touch_out' do
-    #   expect(subject.touch_out).to be true
-    # end
-
     it 'in_journey? returns false' do
       subject.top_up(10)
       station = "Pet"
       subject.touch_in(station)
       subject.touch_out(station)
       station = "Peterborough"
-      # expect(subject.in_journey?).to be true
       expect(subject).not_to be_in_journey # predicate matcher
     end
 
@@ -113,15 +107,6 @@ describe Oystercard do
       expect{subject.touch_out(station)}.to change{subject.balance}.by(-Oystercard::JOURNEY_COST)
     end
   end
-
-  # describe 'journeys' do
-  #   let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
-  #   it 'stores journeys' do
-  #     subject.touch_in(entry_station)
-  #     subject.touch_out(exit_station)
-  #     expect(subject.journeys).to include journey
-  #   end
-  # end
 
   describe '#in_journey?' do
     it 'responds to in_journey? method' do
