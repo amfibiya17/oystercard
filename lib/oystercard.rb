@@ -4,7 +4,7 @@ class Oystercard
   MINIMUM_BALANCE = 1
   JOURNEY_COST = 2
 
-  attr_reader :balance, :entry_station, :exit_station, :journey
+  attr_reader :balance, :entry_station, :exit_station, :journey, :journey_cost
   attr_accessor :journeys
 
   def initialize
@@ -36,6 +36,12 @@ class Oystercard
   
   def in_journey?
     !!entry_station
+  end
+
+  def check_for_min_balance
+    
+    fail "Insufficient balance" if @balance < MINIMUM_BALANCE
+
   end
   
   private

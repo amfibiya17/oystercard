@@ -1,20 +1,36 @@
 # class Journey
-#  touch_in
-#  touch_out
-#  in_journey?
+#  start_journey
+#  finish_journey
 #  fare price
+#  penalty_charge
+
+require 'oystercard'
 
 class Journey
 
-  attr_reader :entry_station
-  
-  def initialize
-    @entry_station = entry_station
+  JOURNEY_COST = 2
+  PENALTY = 6
+
+  def start_journey
+
+    true
+
   end
 
-  def touch_in(station)
-    #fail 'Insufficient funds' if @balance < MINIMUM_BALANCE
-    @entry_station = station
+  def end_journey
+
+    true
+
+  end
+
+  def fare
+
+    if start_journey && end_journey
+      JOURNEY_COST
+    else
+      PENALTY
+    end
+
   end
 
 end
