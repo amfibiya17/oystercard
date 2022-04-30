@@ -1,36 +1,37 @@
-# class Journey
-#  start_journey
-#  finish_journey
-#  fare price
-#  penalty_charge
-
-require 'oystercard'
-
 class Journey
+  attr_reader :entry_station, :exit_station
 
-  JOURNEY_COST = 2
-  PENALTY = 6
+  PENALTY_FARE = 6
 
-  def start_journey
-
-    true
-
+  def initialize(entry_station: nil)
+    @entry_station = entry_station
+    @complete = false
   end
 
-  def end_journey
-
-    true
-
+  def exit(station=nil)
+    @exit_station = station
+    @complete = true
+    self
   end
 
   def fare
+    return PENALTY_FARE if penalty?
+    zones.inject(:-) + 1
+  end
 
-    if start_journey && end_journey
-      JOURNEY_COST
-    else
-      PENALTY
-    end
+  def complete?
+    @complete
+  end
 
+
+  private
+
+  def zones
+    [entry_station, exit_station].map(&:zone).sort{|a,b| b <=> a }
+  end
+
+  def penalty?
+    (!entry_station || !exit_station) 
   end
 
 end

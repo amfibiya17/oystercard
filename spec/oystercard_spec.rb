@@ -92,16 +92,16 @@ describe Oystercard do
 
     it 'in_journey? returns false' do
       subject.top_up(10)
-      station = "Pet"
+      station = "Peterborough1"
       subject.touch_in(station)
       subject.touch_out(station)
-      station = "Peterborough"
+      station = "Peterborough2"
       expect(subject).not_to be_in_journey # predicate matcher
     end
 
     it 'takes correct amount deducted from the card when the journey is complete' do
       subject.top_up(10)
-      station = "Peterborough"
+      station = "Peterborough1"
       subject.touch_in(station)
       subject.touch_out(station)
       expect{subject.touch_out(station)}.to change{subject.balance}.by(-Oystercard::JOURNEY_COST)
